@@ -1,0 +1,117 @@
+% flip the camera handedness to match Blender-Collada output to Mitsuba and PBRT
+Collada {
+    Camera:translate|sid=location += (camera-position)
+    Camera:rotate|sid=rotationZ += (camera-rotation-z)
+    Camera:rotate|sid=rotationY += (camera-rotation-y)
+    Camera:rotate|sid=rotationX += (camera-rotation-x)
+
+    Camera:scale|sid=scale = -1 1 1
+}
+
+
+% config
+Mitsuba ward {
+    integrator:integrator:path
+    integrator:maxDepth.integer = 10
+
+    Camera-camera_sampler:sampler:ldsampler
+    Camera-camera_sampler:sampleCount.integer = 128
+
+}
+
+
+% config
+PBRT ward {
+    integrator:SurfaceIntegrator:path
+    integrator:maxdepth.integer = 1
+
+    sampler:Sampler:lowdiscrepancy
+    sampler:pixelsamples.integer = 8
+
+}
+
+
+% base scene lights
+Generic ward {
+    CeilingLight-mesh:light:area
+    CeilingLight-mesh:intensity.spectrum = (base-light-illum-1)
+
+    HighRearLight-mesh:light:area
+    HighRearLight-mesh:intensity.spectrum = 300:1 800:1
+
+    LowRearLight-mesh:light:area
+    LowRearLight-mesh:intensity.spectrum = 300:1 800:1
+
+}
+
+
+% inserted lights
+Generic ward {
+    light-1-SmallBall-mesh:light:area
+    light-1-SmallBall-mesh:intensity.spectrum = (inserted-light-illum-1)
+
+    light-2-SmallBall-mesh:light:area
+    light-2-SmallBall-mesh:intensity.spectrum = 300:1 800:1
+
+}
+
+
+% materials
+Generic ward {
+    BaseBoard-material:material:anisoward
+    BaseBoard-material:diffuseReflectance.spectrum = mccBabel-16.spd
+    BaseBoard-material:specularReflectance.spectrum = 300:0.3 800:0.2
+
+    CeilingLight-material:material:anisoward
+    CeilingLight-material:diffuseReflectance.spectrum = mccBabel-19.spd
+    CeilingLight-material:specularReflectance.spectrum = 300:0.4 800:0.1
+
+    Floor-material:material:anisoward
+    Floor-material:diffuseReflectance.spectrum = mccBabel-9.spd
+    Floor-material:specularReflectance.spectrum = 300:0.2 800:0.3
+
+    HighRearLight-material:material:anisoward
+    HighRearLight-material:diffuseReflectance.spectrum = mccBabel-16.spd
+    HighRearLight-material:specularReflectance.spectrum = 300:0.3 800:0.2
+
+    Leaves-material:material:anisoward
+    Leaves-material:diffuseReflectance.spectrum = mccBabel-10.spd
+    Leaves-material:specularReflectance.spectrum = 300:0.2 800:0.3
+
+    LowRearLight-material:material:anisoward
+    LowRearLight-material:diffuseReflectance.spectrum = mccBabel-21.spd
+    LowRearLight-material:specularReflectance.spectrum = 300:0.4 800:0.1
+
+    Pot-material:material:anisoward
+    Pot-material:diffuseReflectance.spectrum = (base-object-diffuse-1)
+    Pot-material:specularReflectance.spectrum = (base-object-specular-1)
+
+    Rocks-material:material:anisoward
+    Rocks-material:diffuseReflectance.spectrum = mccBabel-7.spd
+    Rocks-material:specularReflectance.spectrum = 300:0.1 800:0.4
+
+    Wall-material:material:anisoward
+    Wall-material:diffuseReflectance.spectrum = mccBabel-15.spd
+    Wall-material:specularReflectance.spectrum = 300:0.3 800:0.2
+
+    object-1-Blobbie-material:material:anisoward
+    object-1-Blobbie-material:diffuseReflectance.spectrum = (inserted-object-diffuse-1)
+    object-1-Blobbie-material:specularReflectance.spectrum = (inserted-object-specular-1)
+
+    object-2-Blobbie-material:material:anisoward
+    object-2-Blobbie-material:diffuseReflectance.spectrum = mccBabel-21.spd
+    object-2-Blobbie-material:specularReflectance.spectrum = 300:0.4 800:0.1
+
+    object-3-Blobbie-material:material:anisoward
+    object-3-Blobbie-material:diffuseReflectance.spectrum = mccBabel-12.spd
+    object-3-Blobbie-material:specularReflectance.spectrum = 300:0.2 800:0.3
+
+    light-1-SmallBall-material:material:anisoward
+    light-1-SmallBall-material:diffuseReflectance.spectrum = mccBabel-8.spd
+    light-1-SmallBall-material:specularReflectance.spectrum = 300:0.2 800:0.3
+
+    light-2-SmallBall-material:material:anisoward
+    light-2-SmallBall-material:diffuseReflectance.spectrum = mccBabel-11.spd
+    light-2-SmallBall-material:specularReflectance.spectrum = 300:0.2 800:0.3
+
+}

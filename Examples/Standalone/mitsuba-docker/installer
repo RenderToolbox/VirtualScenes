@@ -1,0 +1,45 @@
+# get dependencies
+sudo apt-get update 
+sudo apt-get install \
+    build-essential \
+    libboost-all-dev \
+    libeigen3-dev \
+    libfftw3-dev \
+    libglew-dev \
+    libglewmx-dev \
+    libilmbase-dev \
+    libjpeg8-dev \
+    libjpeg-dev \
+    libopenexr-dev \
+    libpcrecpp0 \
+    libpng12-dev \
+    libxerces-c3.1 \
+    libxerces-c-dev \
+    libx11-dev \
+    libxxf86vm-dev \
+    mercurial \
+    mercurial-common \
+    qt4-dev-tools \
+    scons \
+    x11proto-xf86vidmode-dev \
+    zlib1g-dev
+
+wget http://www.mitsuba-renderer.org/releases/current/trusty/collada-dom-dev_2.4.0-1_amd64.deb
+wget http://www.mitsuba-renderer.org/releases/current/trusty/collada-dom_2.4.0-1_amd64.deb
+sudo dpkg --install collada-dom_*.deb
+
+# get mitsuba source
+mkdir -p ~/mitsuba/mitsuba-src
+cd ~/mitsuba/mitsuba-src
+hg clone https://www.mitsuba-renderer.org/hg/mitsuba
+cd ~/mitsuba/mitsuba-src/mitsuba
+
+## edit mitsuba source and config for 31 spectrum bands in 395-705nm
+sed 's/SAMPLES=[0-9]*/SAMPLES=31/' build/config-linux-gcc.py > config.py
+sed -e 's/SPECTRUM_MIN_WAVELENGTH[ ^I]*[0-9]*$/SPECTRUM_MIN_WAVELENGTH   395/' \
+    -e 's/SPECTRUM_MAX_WAVELENGTH[ ^I]*[0-9]*$/SPECTRUM_MAX_WAVELENGTH   705/' \
+    --in-place include/mitsuba/core/spectrum.h
+
+# build mitsuba
+scons
+

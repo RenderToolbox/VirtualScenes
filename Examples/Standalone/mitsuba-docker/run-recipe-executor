@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# just a wrapper around annoyinng commands
+# pass on any arguments to our Matlab script
+/home/rtb/recipe-executor/RecipeExecutor/run_RecipeExecutor.sh /usr/local/MATLAB/MATLAB_Runtime/v85 "$@"
+
