@@ -21,8 +21,7 @@ relativeSceneFile = recipe.rendering.scenes{1}.mitsubaFile;
 sceneFile = GetWorkingAbsolutePath(relativeSceneFile, recipe.input.hints);
 
 %% Invoke Mitsuba for the "shapeIndex" factoid.
-mitsuba = getpref('Mitsuba');
-mitsuba.app = getpref('VirtualScenes', 'rgbMitsubaApp');
+mitsuba = getpref('MitsubaRGB');
 
 factoids = {'shapeIndex'};
 format = 'rgb';

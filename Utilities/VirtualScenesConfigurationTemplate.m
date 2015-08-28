@@ -46,7 +46,12 @@ setpref(prefName, 'montageScaleFactor', 1);
 setpref(prefName, 'montageScaleMethod', 'lanczos3');
 
 % alternate RGB version of Mitsuba
-setpref(prefName, 'rgbMitsubaApp', '/Applications/Mitsuba-RGB.app');
+mitsuba = getpref('Mitsuba');
+setpref('MitsubaRGB', 'adjustments', mitsuba.adjustments);
+setpref('MitsubaRGB', 'radiometricScaleFactor', mitsuba.radiometricScaleFactor);
+setpref('MitsubaRGB', 'executable', mitsuba.executable);
+setpref('MitsubaRGB', 'importer', mitsuba.importer);
+setpref('MitsubaRGB', 'app', '/Applications/Mitsuba-RGB.app');
 
 %% Typical Mappings used to configure Mitsuba
 integratorId = 'integrator';

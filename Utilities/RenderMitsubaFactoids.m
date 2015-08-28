@@ -108,8 +108,7 @@ else
 end
 
 if nargin < 8 || isempty(mitsuba)
-    mitsuba = getpref('Mitsuba');
-    mitsuba.app = getpref('VirtualScenes', 'rgbMitsubaApp');
+    mitsuba = getpref('MitsubaRGB');
 end
 
 if nargin < 9 || isempty(singleSampling)
