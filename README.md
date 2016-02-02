@@ -15,9 +15,9 @@ Building the RGB version should go just like the spectral build.  You just have 
 
 You will now have two flavors of Mitsuba to manage.
 
-On OS X, you'll have two versions of `Mitsuba.app`.  Rename the RGB version to `Mitsuba-RGB.app` and put both of them somewhere you can remember, perhaps your `/Applications` folder.
+On OS X, you'll have two flavors of `Mitsuba.app`.  Rename the RGB version to `Mitsuba-RGB.app` and put both of them somewhere you can remember, perhaps your `/Applications` folder.
 
-On Linux, you'll have two versions of the `dist` folder which is produced by the build.  Copy the spectral version to a folder named `mitsuba`, copy the RGB version to a folder named `mitsuba-rgb`, and put them both somewhere you can remember, perhaps `/usr/local/` or your home folder.
+On Linux, you'll have two flavors of the `dist` folder which is produced by the build.  Copy the spectral version to a folder named `mitsuba`, copy the RGB version to a folder named `mitsuba-rgb`, and put them both somewhere you can remember, perhaps `/usr/local/` or your home folder.
 
 ### VirtualScenes Configuration
 Git clone this repository and add to your Matlab path.
