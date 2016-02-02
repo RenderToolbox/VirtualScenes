@@ -69,8 +69,8 @@ lightSet = { ...
     };
 
 %% Build multiple recipes based on the sets above.
-objectConditions = 4:8;
-lightConditions = 0:3;
+objectConditions = [0 5];
+lightConditions = [0 3];
 
 nSceneConditions = numel(baseSceneSet);
 nObjectConditions = numel(objectConditions);
