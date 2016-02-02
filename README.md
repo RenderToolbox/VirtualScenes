@@ -32,4 +32,6 @@ On OS X, make sure `setpref('MitsubaRGB', 'app', ...);` points to your own `Mits
 
 On Linux, make sure `setpref('MitsubaRGB', 'executable', ...);` and `setpref('MitsubaRGB', 'importer', ...);` point into to your own `mitsuba` and `mitsuba-rgb` folders.
 
-Now execute your copy of `VirtualScenesConfigurationTemplate.m`.  *Don't for get to execute it!*
+Now execute your copy of `VirtualScenesConfigurationTemplate.m`.
+
+*Don't for get to execute it!*
