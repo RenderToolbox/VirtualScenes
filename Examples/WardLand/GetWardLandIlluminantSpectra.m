@@ -50,11 +50,11 @@ end
 
 % choose random illuminant temperatures
 %   re-pick when temps go out of range
-temps = normrnd(mean, std, [1, nSpectra]);
+temps = mean + std .* randn([1, nSpectra]);
 outOfRange = temps > range(2) | temps < range(1);
 attempts = 100;
 while any(outOfRange) && attempts > 0
-    temps(outOfRange) = normrnd(mean, std, [1, sum(outOfRange)]);
+    temps(outOfRange) = mean + std .* randn([1, sum(outOfRange)]);
     outOfRange = temps > range(2) | temps < range(1);
     attempts = attempts - 1;
 end
