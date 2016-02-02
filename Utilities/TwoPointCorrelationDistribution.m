@@ -149,7 +149,15 @@ for ii = 1:nBins
     isIn = objectsA == objectsB;
     
     % compute "in" and "out" correlations
-    inCorrelations(ii) = corr2(pixelsA(isIn), pixelsB(isIn));
-    outCorrelations(ii) = corr2(pixelsA(~isIn), pixelsB(~isIn));
+    inCorrelations(ii) = myCorr2(pixelsA(isIn), pixelsB(isIn));
+    outCorrelations(ii) = myCorr2(pixelsA(~isIn), pixelsB(~isIn));
     nIn(ii) = sum(isIn);
 end
+
+% Implement correlation function here 
+%   to break dependency on image processing toolbox
+%   thanks: http://stackoverflow.com/questions/27343283/explaining-corr2-function-in-matlab
+function r = myCorr2(a, b)
+a = a - mean(a(:));
+b = b - mean(b(:));
+r = sum(sum(a .* b)) / sqrt(sum(sum(a .* a)) * sum(sum(b .* b)));
