@@ -13,7 +13,7 @@ VirtualScenes uses a feature of the Mitsuba renderer to extract ground truth dat
 
 Building the RGB version should go just like the spectral build.  You just have to edit your `config.py` with  `-DSPECTRUM_SAMPLES=3`, and then run `scons`.
 
-You will now have two executables to manage
+You will now have two flavors of Mitsuba to manage.
 
 On OS X, you'll have two versions of `Mitsuba.app`.  Rename the RGB version to `Mitsuba-RGB.app` and put both of them somewhere you can remember, perhaps your `/Applications` folder.
 
