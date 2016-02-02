@@ -35,3 +35,27 @@ On Linux, make sure `setpref('MitsubaRGB', 'executable', ...);` and `setpref('Mi
 Now execute your copy of `VirtualScenesConfigurationTemplate.m`.
 
 *Don't for get to execute it!*
+
+### Generate a Boat Load of Virtual Scenes
+VirtualScenes can generate random scenes by insterting random objects at random positions into existing "base scenes".
+
+Try running `MakeManyWardlandRecipes.m` to generate 24 of these scenes.  This should not take too long because we're just generating rendering recipes.  We're not rendering yet.
+
+### Render a Boat Load of Virtual Scenes
+Now you have 24 recipes ready for rendering.
+
+Try running `ExecuteManyWardLandRecipes.m` to start some renderings.  By default, this will render all 24 scenes, which may take a while.  For a quicker preview, see line 36:
+```
+nScenes = numel(archiveFiles);
+```
+To perform just one rendering, edit this line.  For example:
+```
+nScenes = 1; %numel(archiveFiles);
+```
+
+### Analyze a Boat Load of Renderings
+Now you have up to 24 renderings.  What do they look like?  What are some statistics about them.
+
+Try running `AnalyzeManyWardLandRecipes.m` to analyze the renderings you just executed.  By default, this will analyze the same number of renderings executed in the previous step.
+
+`AnalyzeManyWardLandRecipes.m` is one example how you might find and analyze VirtualScenes renderings.  You could copy this and modify it for other purposes.
