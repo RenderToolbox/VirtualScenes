@@ -23,7 +23,7 @@ On Linux, you'll have two versions of the `dist` folder which is produced by the
 Git clone this repository and add to your Matlab path.
 ```
 git clone https://github.com/RenderToolbox3/VirtualScenes.git
-# add to Matlab path
+# add VirtualScenes to Matlab path, with subfolders
 ```
 
 Make a copy of `VirtualScenesConfigurationTemplate.m` and edit it.
