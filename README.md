@@ -46,13 +46,10 @@ Try running `MakeManyWardlandRecipes.m` to generate 24 of these scenes.  This sh
 ### Render a Boat Load of Virtual Scenes
 Now you have 24 recipes ready for rendering.
 
-Try running `ExecuteManyWardLandRecipes.m` to start some renderings.  By default, this will render all 24 scenes, which may take a while.  For a quicker preview, see line 36:
+Try running `ExecuteManyWardLandRecipes.m` to start some renderings.  By default, this will render all 24 scenes, which may take a while.  For a quicker preview, edit line.  Change the value of `nScenes` to some smaller number, like 1:
 ```
-nScenes = numel(archiveFiles);
-```
-To perform just one rendering, edit this line.  For example:
-```
-nScenes = 1; %numel(archiveFiles);
+%nScenes = numel(archiveFiles);
+nScenes = 1;
 ```
 
 ### Analyze a Boat Load of Renderings
