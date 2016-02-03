@@ -9,9 +9,11 @@ VirtualScenes is an extension to RenderToolbox3.  So first you must try  [Instal
 To verify your installation, run `RenderToolbox3InstallationTest()`.
 
 ### RGB version of Mitsuba
-VirtualScenes uses a feature of the Mitsuba renderer to extract ground truth data from a scene.  Some of the ground truth "factoids" only work when Mitsuba is compiled in RGB mode.  So you'll need two builds of Mitsuba: one for spectral rendering and one for RGB factoids.
+VirtualScenes uses a feature of the Mitsuba renderer to extract ground truth data from a scene.  Some of the ground truth "factoids" only work when Mitsuba is compiled in RGB mode (There is probably not a deep reason for this limitation, it was probably just easier to implement Mitsuba that way).  So you'll need two builds of Mitsuba: one for spectral rendering and one for RGB factoids.
 
 Building the RGB version should go just like the [spectral build](https://github.com/RenderToolbox3/RenderToolbox3/wiki/Building-Renderers#mitsuba).  You just have to edit your `config.py` with  `-DSPECTRUM_SAMPLES=3`, and then run `scons`.
+
+If you are using OS X, you might be able to skip the build, and simply download one of our [Pre-Built-Renderers](https://github.com/RenderToolbox3/RenderToolbox3/wiki/Pre-Built-Renderers)
 
 You will now have two flavors of Mitsuba to manage.
 
