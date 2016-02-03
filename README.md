@@ -11,7 +11,7 @@ To verify your installation, run `RenderToolbox3InstallationTest()`.
 ### RGB version of Mitsuba
 VirtualScenes uses a feature of the Mitsuba renderer to extract ground truth data from a scene.  Some of the ground truth "factoids" only work when Mitsuba is compiled in RGB mode.  So you'll need two builds of Mitsuba: one for spectral rendering and one for RGB factoids.
 
-Building the RGB version should go just like the spectral build.  You just have to edit your `config.py` with  `-DSPECTRUM_SAMPLES=3`, and then run `scons`.
+Building the RGB version should go just like the [spectral build](https://github.com/RenderToolbox3/RenderToolbox3/wiki/Building-Renderers#mitsuba).  You just have to edit your `config.py` with  `-DSPECTRUM_SAMPLES=3`, and then run `scons`.
 
 You will now have two flavors of Mitsuba to manage.
 
