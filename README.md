@@ -1,7 +1,7 @@
 # VirtualScenes
 With RenderToolbox3, render scenes with random objects, materials, and lights.
 
-# Gettint Started
+# Installing
 
 ### RenderToolbox3
 VirtualScenes is an extension to RenderToolbox3.  So first you must try  [Installing-RenderToolbox3](https://github.com/RenderToolbox3/RenderToolbox3/wiki/Installing-RenderToolbox3).
@@ -35,6 +35,8 @@ On Linux, make sure `setpref('MitsubaRGB', 'executable', ...);` and `setpref('Mi
 Now execute your copy of `VirtualScenesConfigurationTemplate.m`.
 
 *Don't for get to execute it!*
+
+# Using
 
 ### Generate a Boat Load of Virtual Scenes
 VirtualScenes can generate random scenes by insterting random objects at random positions into existing "base scenes".
