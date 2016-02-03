@@ -57,4 +57,4 @@ Now you have up to 24 renderings.  What do they look like?  What are some statis
 
 Try running `AnalyzeManyWardLandRecipes.m` to analyze the renderings you just executed.  By default, this will analyze the same number of renderings executed in the previous step.
 
-`AnalyzeManyWardLandRecipes.m` is one example how you might find and analyze VirtualScenes renderings.  You could copy this and modify it for other purposes.
+`AnalyzeManyWardLandRecipes.m` is one example how to locate VirtualScenes data and do some analysis on it.  You could copy this script and modify it for other analyses.
