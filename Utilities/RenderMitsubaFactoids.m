@@ -172,7 +172,10 @@ WriteSceneDOM(newScene, docNode);
 
 %% Render the factoid scene.
 hints.isPlot = false;
+originalLibPath = getpref('RenderToolbox3', 'libPath');
+setpref('RenderToolbox3', 'libPath', fileparts(mitsuba.executable));
 [status, result, exrOutput] = RunMitsuba(newScene, hints, mitsuba);
+setpref('RenderToolbox3', 'libPath', originalLibPath);
 
 %% Get the factoid output
 [sliceInfo, data] = ReadMultichannelEXR(exrOutput);

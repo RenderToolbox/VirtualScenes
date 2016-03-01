@@ -33,7 +33,7 @@ rotMax = 359;
 hints.recipeName = 'PlantAndBarrel';
 ChangeToWorkingFolder(hints);
 [matteMaterials, wardMaterials] = GetWardLandMaterials(hints);
-lightSpectra = GetWardLandIlluminantSpectra(hints);
+lightSpectra = GetWardLandIlluminantSpectra(6500, 0, [4000 12000], 20, hints);
 
 % assemble the recipe
 choices = GetWardLandChoices('IndoorPlant', ...
@@ -52,7 +52,7 @@ PackUpRecipe(plantAndBarrel, archive, {'temp'});
 hints.recipeName = 'NearFarWarehouse';
 ChangeToWorkingFolder(hints);
 [matteMaterials, wardMaterials] = GetWardLandMaterials(hints);
-lightSpectra = GetWardLandIlluminantSpectra(hints);
+lightSpectra = GetWardLandIlluminantSpectra(6500, 0, [4000 12000], 20, hints);
 
 % assemble the recipe
 choices = GetWardLandChoices('Warehouse', ...
@@ -71,7 +71,7 @@ PackUpRecipe(nearFarWarehouse, archive, {'temp'});
 hints.recipeName = 'Mondrian';
 ChangeToWorkingFolder(hints);
 [matteMaterials, wardMaterials] = GetWardLandMaterials(hints);
-lightSpectra = GetWardLandIlluminantSpectra(hints);
+lightSpectra = GetWardLandIlluminantSpectra(6500, 0, [4000 12000], 20, hints);
 
 % assemble the recipe
 choices = GetWardLandChoices('CheckerBoard', ...
@@ -90,7 +90,7 @@ PackUpRecipe(mondrian, archive, {'temp'});
 hints.recipeName = 'Blobbies';
 ChangeToWorkingFolder(hints);
 [matteMaterials, wardMaterials] = GetWardLandMaterials(hints);
-lightSpectra = GetWardLandIlluminantSpectra(hints);
+lightSpectra = GetWardLandIlluminantSpectra(6500, 0, [4000 12000], 20, hints);
 
 % assemble the recipe
 choices = GetWardLandChoices('CheckerBoard', ...

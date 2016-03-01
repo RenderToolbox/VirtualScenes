@@ -26,8 +26,8 @@ end
 % edit some batch renderer options
 hints.renderer = 'Mitsuba';
 hints.workingFolder = getpref('VirtualScenes', 'workingFolder');
-hints.imageWidth = 640 / 1;
-hints.imageHeight = 480 / 1;
+hints.imageWidth = 640 / 4;
+hints.imageHeight = 480 / 4;
 
 
 %% Locate the packed-up recipe.
@@ -78,11 +78,11 @@ radiance = LoadRecipeProcessingImageFile(recipe, 'radiance', 'SRGBMatte');
 albedo = LoadRecipeProcessingImageFile(recipe, 'albedo', 'SRGBAlbedo');
 reflect = LoadRecipeProcessingImageFile(recipe, 'reflectance', 'SRGBDiffuseInterp');
 
-recipe = MakeRecipeIlluminationImages(recipe, filterWidth, toneMapFactor, isScale, true);
+recipe = MakeRecipeIlluminationImages(recipe, filterWidth, toneMapFactor, isScale);
 illumAlbedoRaw = LoadRecipeProcessingImageFile(recipe, 'illumination', 'SRGBDiffuseRaw');
 illumAlbedoInterp = LoadRecipeProcessingImageFile(recipe, 'illumination', 'SRGBDiffuseInterp');
 
-recipe = MakeRecipeIlluminationImages(recipe, filterWidth, toneMapFactor, isScale, false);
+recipe = MakeRecipeIlluminationImages(recipe, filterWidth, toneMapFactor, isScale);
 illumReflectRaw = LoadRecipeProcessingImageFile(recipe, 'illumination', 'SRGBDiffuseRaw');
 illumReflectInterp = LoadRecipeProcessingImageFile(recipe, 'illumination', 'SRGBDiffuseInterp');
 

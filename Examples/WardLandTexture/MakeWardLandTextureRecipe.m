@@ -73,7 +73,7 @@ ChangeToWorkingFolder(hints);
 
 % make sure Ward Land resources are available to this recipe
 [matteMaterials, wardMaterials] = GetWardLandMaterials(hints);
-lightSpectra = GetWardLandIlluminantSpectra(hints);
+lightSpectra = GetWardLandIlluminantSpectra(6500, 3000, [4000 12000], 20, hints);
 
 % choose a random base scene for this recipe
 baseScene = baseSceneSet{randi(numel(baseSceneSet), 1)};

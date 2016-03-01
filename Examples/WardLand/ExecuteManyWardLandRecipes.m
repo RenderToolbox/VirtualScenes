@@ -34,6 +34,7 @@ hints.imageHeight = 480 / 4;
 
 archiveFiles = FindFiles(recipeFolder, '\.zip$');
 nScenes = numel(archiveFiles);
+nScenes = 1;
 for ii = 1:nScenes
     % get the recupe
     recipe = UnpackRecipe(archiveFiles{ii}, hints);
