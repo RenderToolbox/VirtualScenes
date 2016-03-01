@@ -65,7 +65,7 @@ objectSet = { ...
 
 %% Make a template of WardLand choices to modify below.
 [matteMaterials, wardMaterials] = GetWardLandMaterials(hints);
-lightSpectra = GetWardLandIlluminantSpectra(hints);
+lightSpectra = GetWardLandIlluminantSpectra(6500, 3000, [4000 12000], 20, hints);
 
 templateChoices = GetWardLandChoices(baseScene, ...
     objectSet, objectCountSeries(end), ...
@@ -100,7 +100,7 @@ for cc = 1:nCountSeries
         
         % copy resources into this recipe's folder
         [matteMaterials, wardMaterials] = GetWardLandMaterials(hints);
-        lightSpectra = GetWardLandIlluminantSpectra(hints);
+        lightSpectra = GetWardLandIlluminantSpectra(6500, 3000, [4000 12000], 20, hints);
         
         % assemble the recipe
         recipe = BuildWardLandRecipe(defaultMappings, choices, [], [], hints);
