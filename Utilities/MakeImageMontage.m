@@ -50,7 +50,7 @@ for ii = 1:rows
             continue;
         end
         
-        if ischar(panelData) && exist(panelData, 'file')
+        if ischar(panelData) && 2 == exist(panelData, 'file')
             panel = imread(panelData);
         else
             panel = panelData;
@@ -83,7 +83,7 @@ for ii = 1:rows
         bigMontage(yRange, xRange, :) = panel;
         
         panelName = names{ii,jj};
-        if ~ischar(panelName)
+        if ~ischar(panelName) || 5 ~= exist('insertText')
             continue;
         end
         
