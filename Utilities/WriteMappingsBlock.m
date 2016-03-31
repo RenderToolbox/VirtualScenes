@@ -6,7 +6,7 @@
 %
 % @details
 % Writes a formatted block of mappings file syntax to the file at @a fid.
-% The block may be preceeded by any comment line as given in @a comment.  
+% The block may be preceeded by any comment line as given in @a comment.
 % The block must have a recognized type name, for example 'Generic',
 % 'Mitsuba', or 'PBRT-path'.
 %
@@ -26,12 +26,26 @@ function WriteMappingsBlock(fid, comment, blockName, elementInfo)
 fprintf(fid, '\n\n%% %s\n', comment);
 fprintf(fid, '%s {\n', blockName);
 for ii = 1:numel(elementInfo)
-    fprintf(fid, '    %s:%s:%s\n', elementInfo(ii).id, ...
-        elementInfo(ii).category, elementInfo(ii).type);
-    for jj = 1:numel(elementInfo(ii).properties)
-        prop = elementInfo(ii).properties(jj);
-        fprintf(fid, '    %s:%s.%s = %s\n', elementInfo(ii).id, ...
-            prop.propertyName, prop.valueType, prop.propertyValue);
+    
+    if isfield(elementInfo, 'path')
+        % path syntax
+        %   Camera:scale|sid=scale = -1 1 1
+        fullPath = cat(2, {elementInfo(ii).id}, elementInfo(ii).path);
+        pathString = PathCellToString(fullPath);
+        fprintf(fid, '    %s = %s\n', pathString, elementInfo(ii).value);
+        
+    else
+        % scene target syntax
+        %   BottomLight-material:material:anisoward
+        %   BottomLight-material:diffuseReflectance.spectrum = mccBabel-1.spd
+        %   BottomLight-material:specularReflectance.spectrum = 300:0.0 800:0.5
+        fprintf(fid, '    %s:%s:%s\n', elementInfo(ii).id, ...
+            elementInfo(ii).category, elementInfo(ii).type);
+        for jj = 1:numel(elementInfo(ii).properties)
+            prop = elementInfo(ii).properties(jj);
+            fprintf(fid, '    %s:%s.%s = %s\n', elementInfo(ii).id, ...
+                prop.propertyName, prop.valueType, prop.propertyValue);
+        end
     end
     fprintf(fid, '\n');
 end

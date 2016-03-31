@@ -3,7 +3,7 @@
 %   @param choices struct of random scene picks as from GetWardLandChoices()
 %   @param auxiliaryIds cell array of strings of auxiliary object ids
 %   @param auxiliaryObjects cell array auxiliary object descriptions
-%   @param choices struct of random scene picks as from GetWardLandChoices()
+%   @param lookAt for the camera, 'eyeX eyeY eyeZ targetX targetY targetZ upX upY upZ'
 %   @param hints struct of RenderToolbox3 options as from GetDefaultHints()
 %
 % @details
@@ -28,7 +28,7 @@
 % The new recipe will also have at least one "mask" condition named
 % "mask-1".  This condition assigns a unique, single-band reflectance to
 % each object in the scene.  This allows us to identify each object later,
-% by its reflectance.  In case there are more objects than available
+% by its reflectance.  In case there are more objecposts than available
 % renderer spectrum bands, the recipe will contain additional conditions
 % named like "mask-2", etc.
 %
@@ -38,10 +38,10 @@
 %
 % @details
 % Usage:
-%   recipe = BuildWardLandRecipe(defaultMappings, choices, hints)
+%   recipe = BuildWardLandRecipe(defaultMappings, choices, auxiliaryIds, auxiliaryObjects, lookAt, hints)
 %
 % @ingroup WardLand
-function recipe = BuildWardLandRecipe(defaultMappings, choices, auxiliaryIds, auxiliaryObjects, hints)
+function recipe = BuildWardLandRecipe(defaultMappings, choices, auxiliaryIds, auxiliaryObjects, lookAt, hints)
 
 if nargin < 3 || isempty(hints)
     auxiliaryIds = {};
@@ -51,7 +51,11 @@ if nargin < 4 || isempty(hints)
     auxiliaryObjects = {};
 end
 
-if nargin < 5 || isempty(hints)
+if nargin < 5 || isempty(lookAt)
+    lookAt = '';
+end
+
+if nargin < 6 || isempty(hints)
     hints = GetDefaultHints();
 else
     hints = GetDefaultHints(hints);
@@ -201,11 +205,23 @@ for ii = 1:nPages
     allMaskMaterialPages(ii, low:high) = allMaskMaterials(low:high);
 end
 
+%% Optionally append a lookAt transform for the Camera.
+if isempty(lookAt)
+    freshMappings = defaultMappings;
+else
+    cameraId = 'Camera';
+    description.path = {':lookAt|sid=lookat'};
+    description.value = lookAt;
+    AppendMappings(defaultMappings, mappingsFile, ...
+        {cameraId}, {description}, 'Collada', 'move the camera');
+    freshMappings = mappingsFile;
+end
+
 %% Write out config, materials, and lights to a big mappings file.
 configs = getpref(prefName, 'rendererConfigs');
 
 % full "ward" rendering
-AppendMappings(defaultMappings, mappingsFile, ...
+AppendMappings(freshMappings, mappingsFile, ...
     configs.Mitsuba.ids, configs.Mitsuba.full.descriptions, ...
     [configs.Mitsuba.full.blockName ' ward'], 'config');
 AppendMappings(mappingsFile, mappingsFile, ...
