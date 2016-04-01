@@ -208,12 +208,28 @@ end
 %% Optionally append a lookAt transform for the Camera.
 if isempty(lookAt)
     freshMappings = defaultMappings;
-else
-    cameraId = 'Camera';
-    description.path = {':lookAt|sid=lookat'};
-    description.value = lookAt;
+else    
+    descriptions = cell(1, 6);
+    descriptions{1}.path = {':translate|sid=location'};
+    descriptions{1}.value = '0 0 0';
+    descriptions{2}.path = {':rotate|sid=rotationZ'};
+    descriptions{2}.value = '0 0 1 0';
+    descriptions{3}.path = {':rotate|sid=rotationY'};
+    descriptions{3}.value = '0 1 0 0';
+    descriptions{4}.path = {':rotate|sid=rotationX'};
+    descriptions{4}.value = '1 0 0 0';
+    descriptions{5}.path = {':scale|sid=scale'};
+    descriptions{5}.value = '1 1 1';
+    descriptions{6}.path = {':lookat|sid=lookat'};
+    descriptions{6}.value = lookAt;
+    descriptions{7}.path = {':scale|sid=postScale'};
+    descriptions{7}.value = '-1 1 -1';
+
+    ids = cell(1, numel(descriptions));
+    [ids{:}] = deal('Camera');
+    
     AppendMappings(defaultMappings, mappingsFile, ...
-        {cameraId}, {description}, 'Collada', 'move the camera');
+        ids, descriptions, 'Collada', 'reposition the camera');
     freshMappings = mappingsFile;
 end
 
@@ -359,6 +375,7 @@ WriteConditionsFile(conditionsFile, allNames, allValues);
 executive = { ...
     @MakeRecipeSceneFiles, ...
     @MakeRecipeRenderings, ...
+    @(recipe)MakeRecipeMontage(recipe, 100, true), ...
     };
 
 recipe = NewRecipe([], executive, parentSceneFile, ...
