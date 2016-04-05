@@ -74,13 +74,12 @@ modelAbsPath = GetVirtualScenesRepositoryPath(sceneMetadata.relativePath);
 [modelPath, modelFile, modelExt] = fileparts(modelAbsPath);
 
 resources = GetWorkingFolder('resources', false, hints);
-parentSceneFile = fullfile(resources, [modelFile, modelExt]);
-parentSceneFile = GetWorkingRelativePath(parentSceneFile, hints);
+parentSceneAbsPath = fullfile(resources, [modelFile, modelExt]);
 
-if exist(parentSceneFile, 'file')
-    delete(parentSceneFile);
+if exist(parentSceneAbsPath, 'file')
+    delete(parentSceneAbsPath);
 end
-copyfile(modelAbsPath, parentSceneFile);
+copyfile(modelAbsPath, parentSceneAbsPath);
 
 %% Set up the base scene lights.
 % turn off base scene and inserted lights when making pixel masks
@@ -208,7 +207,7 @@ end
 %% Optionally append a lookAt transform for the Camera.
 if isempty(lookAt)
     freshMappings = defaultMappings;
-else    
+else
     descriptions = cell(1, 6);
     descriptions{1}.path = {':translate|sid=location'};
     descriptions{1}.value = '0 0 0';
@@ -224,7 +223,7 @@ else
     descriptions{6}.value = lookAt;
     descriptions{7}.path = {':scale|sid=postScale'};
     descriptions{7}.value = '-1 1 -1';
-
+    
     ids = cell(1, numel(descriptions));
     [ids{:}] = deal('Camera');
     
@@ -378,7 +377,8 @@ executive = { ...
     @(recipe)MakeRecipeMontage(recipe, 100, true), ...
     };
 
-recipe = NewRecipe([], executive, parentSceneFile, ...
+parentSceneRelativePath = GetWorkingRelativePath(parentSceneAbsPath, hints);
+recipe = NewRecipe([], executive, parentSceneRelativePath, ...
     conditionsFile, mappingsFile, hints);
 
 % remember how materials were assigned

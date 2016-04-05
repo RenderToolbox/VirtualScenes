@@ -111,7 +111,8 @@ assert(isequal(metadata, readMetadata))
 modelName = 'Barrel';
 modelPath = fullfile(repository, 'Objects', 'Models', 'Barrel.dae');
 materialIds = GetSceneElementIds(modelPath, '\w+-material$');
-metadata = WriteMetadata(modelName, [], [], [], materialIds);
+lightIds = GetSceneElementIds(modelPath, '\w+-mesh$');
+metadata = WriteMetadata(modelName, [], [], [], materialIds, lightIds);
 readMetadata = ReadMetadata(modelName);
 assert(isequal(metadata, readMetadata))
 
@@ -119,7 +120,8 @@ assert(isequal(metadata, readMetadata))
 modelName = 'ChampagneBottle';
 modelPath = fullfile(repository, 'Objects', 'Models', 'ChampagneBottle.dae');
 materialIds = GetSceneElementIds(modelPath, '\w+-material$');
-metadata = WriteMetadata(modelName, [], [], [], materialIds);
+lightIds = GetSceneElementIds(modelPath, '\w+-mesh$');
+metadata = WriteMetadata(modelName, [], [], [], materialIds, lightIds);
 readMetadata = ReadMetadata(modelName);
 assert(isequal(metadata, readMetadata))
 
@@ -127,7 +129,8 @@ assert(isequal(metadata, readMetadata))
 modelName = 'RingToy';
 modelPath = fullfile(repository, 'Objects', 'Models', 'RingToy.dae');
 materialIds = GetSceneElementIds(modelPath, '\w+-material$');
-metadata = WriteMetadata(modelName, [], [], [], materialIds);
+lightIds = GetSceneElementIds(modelPath, '\w+-mesh$');
+metadata = WriteMetadata(modelName, [], [], [], materialIds, lightIds);
 readMetadata = ReadMetadata(modelName);
 assert(isequal(metadata, readMetadata))
 
@@ -135,7 +138,8 @@ assert(isequal(metadata, readMetadata))
 modelName = 'Xylophone';
 modelPath = fullfile(repository, 'Objects', 'Models', 'Xylophone.dae');
 materialIds = GetSceneElementIds(modelPath, '\w+-material$');
-metadata = WriteMetadata(modelName, [], [], [], materialIds);
+lightIds = GetSceneElementIds(modelPath, '\w+-mesh$');
+metadata = WriteMetadata(modelName, [], [], [], materialIds, lightIds);
 readMetadata = ReadMetadata(modelName);
 assert(isequal(metadata, readMetadata))
 
