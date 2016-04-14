@@ -20,13 +20,14 @@ objectBox = [-6 2; -2 2; 0 6];
 lightBox = [-6 15; -15 2; 0 15];
 lightExcludeBox = [-6 6; -12 2; 0 7];
 modelPath = fullfile(repository, 'BaseScenes', 'Models', 'IndoorPlant.dae');
+cameraSlots = struct('position', [5 -10 6.223413], 'target', [0 0 0], 'up', [0 0 1]);
 materialIds = GetSceneElementIds(modelPath, '\w+-material$');
 lightIds = { ...
     'CeilingLight-mesh', ...
     'HighRearLight-mesh', ...
     'LowRearLight-mesh', ...
     };
-metadata = WriteMetadata(modelName, objectBox, lightBox, lightExcludeBox, materialIds, lightIds);
+metadata = WriteMetadata(modelName, objectBox, lightBox, lightExcludeBox, cameraSlots, materialIds, lightIds);
 readMetadata = ReadMetadata(modelName);
 assert(isequal(metadata, readMetadata))
 
@@ -36,12 +37,13 @@ objectBox = [-12 -2; -3 6; 0 3];
 lightBox = [-20 20; -20 20; 0 20];
 lightExcludeBox = [-13 4; -7 7; 0 7];
 modelPath = fullfile(repository, 'BaseScenes', 'Models', 'Warehouse.dae');
+cameraSlots = struct('position', [3 -2 1], 'target', [0 0 0], 'up', [0 0 1]);
 materialIds = GetSceneElementIds(modelPath, '\w+-material$');
 lightIds = { ...
     'Sun-mesh', ...
     'Sky-mesh', ...
     };
-metadata = WriteMetadata(modelName, objectBox, lightBox, lightExcludeBox, materialIds, lightIds);
+metadata = WriteMetadata(modelName, objectBox, lightBox, lightExcludeBox, cameraSlots, materialIds, lightIds);
 readMetadata = ReadMetadata(modelName);
 assert(isequal(metadata, readMetadata))
 
@@ -51,13 +53,14 @@ objectBox = [-3 3; -3 3; 1 3];
 lightBox = [-20 20; -20 20; 0 20];
 lightExcludeBox = [-10 10; -10 10; 0 12];
 modelPath = fullfile(repository, 'BaseScenes', 'Models', 'CheckerBoard.dae');
+cameraSlots = struct('position', [0 0 10], 'target', [0 0 0], 'up', [0 1 0]);
 materialIds = GetSceneElementIds(modelPath, '\w+-material$');
 lightIds = { ...
     'TopLeftLight-mesh', ...
     'RightLight-mesh', ...
     'BottomLight-mesh', ...
     };
-metadata = WriteMetadata(modelName, objectBox, lightBox, lightExcludeBox, materialIds, lightIds);
+metadata = WriteMetadata(modelName, objectBox, lightBox, lightExcludeBox, cameraSlots, materialIds, lightIds);
 readMetadata = ReadMetadata(modelName);
 assert(isequal(metadata, readMetadata))
 
@@ -67,12 +70,13 @@ objectBox = [-2.2 2.5; -1.5 7; -1.2 2.3];
 lightBox = [-10 7; -20 20; -1.2 9];
 lightExcludeBox = [-3 3; -8 8; -1.2 5];
 modelPath = fullfile(repository, 'BaseScenes', 'Models', 'Library.dae');
+cameraSlots = struct('position', [1.99103 -5.8023 1.266177], 'target', [0 0 0], 'up', [0 0 1]);
 materialIds = GetSceneElementIds(modelPath, '\w+-material$');
 lightIds = { ...
     'AreaLight01-mesh', ...
     'AreaLight02-mesh', ...
     };
-metadata = WriteMetadata(modelName, objectBox, lightBox, lightExcludeBox, materialIds, lightIds);
+metadata = WriteMetadata(modelName, objectBox, lightBox, lightExcludeBox, cameraSlots, materialIds, lightIds);
 readMetadata = ReadMetadata(modelName);
 assert(isequal(metadata, readMetadata))
 
@@ -82,13 +86,14 @@ objectBox = [-13 5; -5 15; 1 10];
 lightBox = [-14 15; -15 15; 1 10];
 lightExcludeBox = [-13 15; -14 15; 1 10];
 modelPath = fullfile(repository, 'BaseScenes', 'Models', 'TableChairs.dae');
+cameraSlots = struct('position', [14.10489 -13.49116 6.525781], 'target', [0 0 0], 'up', [0 0 1]);
 materialIds = GetSceneElementIds(modelPath, '\w+-material$');
 lightIds = { ...
     'WindowAreaLight-mesh', ...
     'DoorAreaLight-mesh', ...
     'InsideAreaLight-mesh', ...
     };
-metadata = WriteMetadata(modelName, objectBox, lightBox, lightExcludeBox, materialIds, lightIds);
+metadata = WriteMetadata(modelName, objectBox, lightBox, lightExcludeBox, cameraSlots, materialIds, lightIds);
 readMetadata = ReadMetadata(modelName);
 assert(isequal(metadata, readMetadata))
 
@@ -98,12 +103,13 @@ objectBox = [-15 0; -10 0; 0 10];
 lightBox = [-20 0; -10 10; 10 20];
 lightExcludeBox = [-20 -20; -10 -10; 10 10];
 modelPath = fullfile(repository, 'BaseScenes', 'Models', 'Mill.dae');
+cameraSlots = struct('position', [-17.60273 -9.530587 1.545898], 'target', [0 0 0], 'up', [0 0 1]);
 materialIds = GetSceneElementIds(modelPath, '\w+-material$');
 lightIds = { ...
     'SkyLight-mesh', ...
     'SunLight-mesh', ...
     };
-metadata = WriteMetadata(modelName, objectBox, lightBox, lightExcludeBox, materialIds, lightIds);
+metadata = WriteMetadata(modelName, objectBox, lightBox, lightExcludeBox, cameraSlots, materialIds, lightIds);
 readMetadata = ReadMetadata(modelName);
 assert(isequal(metadata, readMetadata))
 
@@ -112,7 +118,7 @@ modelName = 'Barrel';
 modelPath = fullfile(repository, 'Objects', 'Models', 'Barrel.dae');
 materialIds = GetSceneElementIds(modelPath, '\w+-material$');
 lightIds = GetSceneElementIds(modelPath, '\w+-mesh$');
-metadata = WriteMetadata(modelName, [], [], [], materialIds, lightIds);
+metadata = WriteMetadata(modelName, [], [], [], [], materialIds, lightIds);
 readMetadata = ReadMetadata(modelName);
 assert(isequal(metadata, readMetadata))
 
@@ -121,7 +127,7 @@ modelName = 'ChampagneBottle';
 modelPath = fullfile(repository, 'Objects', 'Models', 'ChampagneBottle.dae');
 materialIds = GetSceneElementIds(modelPath, '\w+-material$');
 lightIds = GetSceneElementIds(modelPath, '\w+-mesh$');
-metadata = WriteMetadata(modelName, [], [], [], materialIds, lightIds);
+metadata = WriteMetadata(modelName, [], [], [], [], materialIds, lightIds);
 readMetadata = ReadMetadata(modelName);
 assert(isequal(metadata, readMetadata))
 
@@ -130,7 +136,7 @@ modelName = 'RingToy';
 modelPath = fullfile(repository, 'Objects', 'Models', 'RingToy.dae');
 materialIds = GetSceneElementIds(modelPath, '\w+-material$');
 lightIds = GetSceneElementIds(modelPath, '\w+-mesh$');
-metadata = WriteMetadata(modelName, [], [], [], materialIds, lightIds);
+metadata = WriteMetadata(modelName, [], [], [], [], materialIds, lightIds);
 readMetadata = ReadMetadata(modelName);
 assert(isequal(metadata, readMetadata))
 
@@ -139,7 +145,7 @@ modelName = 'Xylophone';
 modelPath = fullfile(repository, 'Objects', 'Models', 'Xylophone.dae');
 materialIds = GetSceneElementIds(modelPath, '\w+-material$');
 lightIds = GetSceneElementIds(modelPath, '\w+-mesh$');
-metadata = WriteMetadata(modelName, [], [], [], materialIds, lightIds);
+metadata = WriteMetadata(modelName, [], [], [], [], materialIds, lightIds);
 readMetadata = ReadMetadata(modelName);
 assert(isequal(metadata, readMetadata))
 
@@ -148,7 +154,7 @@ modelName = 'CameraFlash';
 modelPath = fullfile(repository, 'Objects', 'Models', 'CameraFlash.dae');
 materialIds = GetSceneElementIds(modelPath, '\w+-material$');
 lightIds = GetSceneElementIds(modelPath, '\w+-mesh$');
-metadata = WriteMetadata(modelName, [], [], [], materialIds, lightIds);
+metadata = WriteMetadata(modelName, [], [], [], [], materialIds, lightIds);
 readMetadata = ReadMetadata(modelName);
 assert(isequal(metadata, readMetadata))
 
@@ -157,7 +163,7 @@ modelName = 'BigBall';
 modelPath = fullfile(repository, 'Objects', 'Models', 'BigBall.dae');
 materialIds = GetSceneElementIds(modelPath, '\w+-material$');
 lightIds = GetSceneElementIds(modelPath, '\w+-mesh$');
-metadata = WriteMetadata(modelName, [], [], [], materialIds, lightIds);
+metadata = WriteMetadata(modelName, [], [], [], [], materialIds, lightIds);
 readMetadata = ReadMetadata(modelName);
 assert(isequal(metadata, readMetadata))
 
@@ -166,7 +172,7 @@ modelName = 'SmallBall';
 modelPath = fullfile(repository, 'Objects', 'Models', 'SmallBall.dae');
 materialIds = GetSceneElementIds(modelPath, '\w+-material$');
 lightIds = GetSceneElementIds(modelPath, '\w+-mesh$');
-metadata = WriteMetadata(modelName, [], [], [], materialIds, lightIds);
+metadata = WriteMetadata(modelName, [], [], [], [], materialIds, lightIds);
 readMetadata = ReadMetadata(modelName);
 assert(isequal(metadata, readMetadata))
 
@@ -175,6 +181,6 @@ modelName = 'Panel';
 modelPath = fullfile(repository, 'Objects', 'Models', 'Panel.dae');
 materialIds = GetSceneElementIds(modelPath, '\w+-material$');
 lightIds = GetSceneElementIds(modelPath, '\w+-mesh$');
-metadata = WriteMetadata(modelName, [], [], [], materialIds, lightIds);
+metadata = WriteMetadata(modelName, [], [], [], [], materialIds, lightIds);
 readMetadata = ReadMetadata(modelName);
 assert(isequal(metadata, readMetadata))

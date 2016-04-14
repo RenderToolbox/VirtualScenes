@@ -11,7 +11,7 @@
 % filtering specified in the recipe's first generated scene file.  If @a
 % singleSampling is true, reduces sampling to one sample per pixel and uses
 % a simple "box" filter for image reconstruction.
-
+%
 % @details
 % Returns the given @a recipe, updated with new factoids in the "factoid"
 % group.

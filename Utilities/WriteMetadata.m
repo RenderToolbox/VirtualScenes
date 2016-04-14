@@ -3,6 +3,7 @@
 %   @param objectBox 3x2 bounding box for inserting objects in scene
 %   @param lightBox 3x2 bounding box for inserting lights in scene
 %   @param lightExcludeBox 3x2 bounding box for @b not inserting lights in scene
+%   @param cameraSlots struct array of "slots" where the camera belongs
 %   @param materialIds cell array of string ids for scene materials
 %   @param lightIds cell array of string ids for scene light meshes
 %
@@ -15,24 +16,30 @@
 % @a modelName must be the name that scripts and toolbox functions and
 % scripts will use to refer to the model, for example "RingToy".  This must
 % correspond to the name of a Collada file in the VirtualScenes Toolbox
-% ModelRepository, such as 
+% ModelRepository, such as
 % 'VirtualScenesToolbox/ModelRepository/Objects/Models/RingToy.dae'.
 %
 % @details
-% @a objectBox should be a matrix of the form 
+% @a objectBox should be a matrix of the form
 % [minX maxX; minY maxY; minZ, maxZ].  This describes the bounding box
 % where it makes sense to insert random objects into the 3D model.
 %
 % @details
-% @a lightBox should be a matrix like @objectBox of the form 
+% @a lightBox should be a matrix like @objectBox of the form
 % [minX maxX; minY maxY; minZ, maxZ].  This describes the bounding box
 % where it makes sense to insert random lights into the 3D model.
 %
 % @details
-% @a lightExcludeBox should be a matrix like @objectBox of the form 
+% @a lightExcludeBox should be a matrix like @objectBox of the form
 % [minX maxX; minY maxY; minZ, maxZ].  This describes the bounding box
-% where it @b does @b not make sense to insert random lights into the 3D 
+% where it @b does @b not make sense to insert random lights into the 3D
 % model.  @a lightExcludeBox must be totally contained by @a lightBox.
+%
+% @details
+% @a cameraSlots should be a struct array of "slots" where the camera can
+% be placed in the scene.  The struct should have fields "position",
+% "target", and "up", which may be used to make a "lookat" transformation
+% for the camera.  We might add more fields later.
 %
 % @details
 % @a materialIds must be a cell array of string ids for scene materials,
@@ -41,14 +48,14 @@
 % modify automatically.
 %
 % @details
-% @a lightIds should a cell array of string ids for scene mesh objets, 
+% @a lightIds should a cell array of string ids for scene mesh objets,
 % for example, {'CeilingLight-mesh', 'WindowLight-mesh', ...}.  These
 % meshes will be the objects that VirtualScenes scripts and toolbox
 % functions can "bless" automatically as area lights.
 %
 % @details
 % Writes or replaces a mat-file in the VirtualScenes model repository, at
-% either 'VirtualScenesToolbox/ModelRepository/Objects' or 
+% either 'VirtualScenesToolbox/ModelRepository/Objects' or
 % 'VirtualScenesToolbox/ModelRepository/BaseScenes'.
 %
 % @details
@@ -61,7 +68,7 @@
 %
 % @ingroup VirtualScenes
 function metadata = WriteMetadata(modelName, objectBox, lightBox, ...
-    lightExcludeBox, materialIds, lightIds)
+    lightExcludeBox, cameraSlots, materialIds, lightIds)
 metadata = [];
 
 % check the bounding volumes
@@ -86,8 +93,16 @@ if nargin < 4 || ~isnumeric(lightExcludeBox) || ~isequal([3 2], size(lightExclud
     lightExcludeBox = eval(defaultVolume);
 end
 
+if nargin < 5 || ~isstruct(cameraSlots)
+    cameraSlots.position = [0 0 0];
+    cameraSlots.target = [0 0 -1];
+    cameraSlots.up = [0 1 0];
+    warning('VirtualScenes:MissingCameraSlots', ...
+        '\nUsing default camera slot.');
+end
+
 % check for known material ids
-if nargin < 5 || ~iscell(materialIds) || isempty(materialIds)
+if nargin < 6 || ~iscell(materialIds) || isempty(materialIds)
     warning('VirtualScenes:NoMaterialIds', ...
         '\nUsing default material Ids, %s', ...
         '{''Material01-material'', ..., ''Material10-material''}');
@@ -98,7 +113,7 @@ if nargin < 5 || ~iscell(materialIds) || isempty(materialIds)
 end
 
 % check for known light ids
-if nargin < 6
+if nargin < 7
     lightIds = {};
 end
 
@@ -122,6 +137,7 @@ metadata = struct( ...
     'objectBox', {objectBox}, ...
     'lightBox', {lightBox}, ...
     'lightExcludeBox', {lightExcludeBox}, ...
+    'cameraSlots', {cameraSlots}, ...
     'materialIds', {materialIds}, ...
     'lightIds', {lightIds});
 
