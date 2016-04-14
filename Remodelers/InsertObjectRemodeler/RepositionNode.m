@@ -62,28 +62,25 @@ if isnumeric(position) || ~objectIdMap.isKey(position)
     return
 end
 
-% get all the transformations from another node
-translatePath = [position ':translate|sid=location'];
-rotatePath = [position ':rotate|sid=rotationX'];
-rotateYPath = [position ':rotate|sid=rotationY'];
-rotateZPath = [position ':rotate|sid=rotationZ'];
-scalePath = [position ':scale|sid=scale'];
+%% Copy all the transformations from another node.
+transformNames = {'translate', 'rotate', 'scale', 'lookat'};
 
-translate = GetSceneValue(objectIdMap, translatePath);
-rotateX = GetSceneValue(objectIdMap, rotatePath);
-rotateY = GetSceneValue(objectIdMap, rotateYPath);
-rotateZ = GetSceneValue(objectIdMap, rotateZPath);
-scale = GetSceneValue(objectIdMap, scalePath);
-
-% set all the transformations on the target node
-translatePath = [nodeId ':translate|sid=location'];
-rotatePath = [nodeId ':rotate|sid=rotationX'];
-rotateYPath = [nodeId ':rotate|sid=rotationY'];
-rotateZPath = [nodeId ':rotate|sid=rotationZ'];
-scalePath = [nodeId ':scale|sid=scale'];
-
-SetSceneValue(objectIdMap, translatePath, translate, true);
-SetSceneValue(objectIdMap, rotatePath, rotateX, true);
-SetSceneValue(objectIdMap, rotateYPath, rotateY, true);
-SetSceneValue(objectIdMap, rotateZPath, rotateZ, true);
-SetSceneValue(objectIdMap, scalePath, scale, true);
+otherNode = SearchScene(objectIdMap, {position});
+[children, names] = GetElementChildren(otherNode);
+nChildren = numel(children);
+for cc = 1:nChildren
+    % only look for transformation elements
+    name = names{cc};
+    if ~any(strcmp(name, transformNames));
+        continue;
+    end
+    
+    % build qualified path to this transformation
+    child = children{cc};
+    [~, ~, sid] = GetElementAttributes(child, 'sid');
+    transformPath = [':' name '|sid=' sid];
+    
+    % copy the transform value to the given object
+    transform = GetSceneValue(objectIdMap, {position, transformPath});
+    SetSceneValue(objectIdMap, {nodeId, transformPath}, transform, true);
+end
