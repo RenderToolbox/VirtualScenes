@@ -59,6 +59,10 @@ for ii = 1:nRecipes
     lms = LoadRecipeProcessingImageFile(recipe, 'lms', 'radiance_ward_lms');
     [reductions{ii}, fig] = AnalyzeSpatialStats(rgb, lum, lms);
     
+    % make lots of factoids to look at
+    recipe = MakeRecipeFactoids(recipe, true);
+    recipe = MakeRecipeFactoidMontage(recipe, 1);
+    
     % save figures for later
     set(fig, ...
         'PaperPositionMode', 'auto', ...

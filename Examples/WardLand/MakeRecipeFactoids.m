@@ -45,3 +45,20 @@ recipe = SetRecipeProcessingData(recipe, 'factoid', 'result', result);
 recipe = SetRecipeProcessingData(recipe, 'factoid', 'newScene', newScene);
 recipe = SetRecipeProcessingData(recipe, 'factoid', 'exrOutput', exrOutput);
 recipe = SetRecipeProcessingData(recipe, 'factoid', 'factoidOutput', factoidOutput);
+
+%% Save a separate RGB image for each factoid.
+factoidNames = fieldnames(factoidOutput);
+nFactoids = numel(factoidNames);
+for ii = 1:nFactoids
+    name = factoidNames{ii};
+    factoid = factoidOutput.(name);
+    
+    % avoid infinities
+    data = factoid.data;
+    data(~isfinite(data)) = 0;
+    
+    % assume factoid channels B, G, R, flip to RGB
+    bgrData = uint8(255 * data ./ max(data(:)));
+    rgbData = flip(bgrData, 3);
+    recipe = SaveRecipeProcessingImageFile(recipe, 'factoid', name, 'png', rgbData);
+end

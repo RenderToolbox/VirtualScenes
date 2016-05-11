@@ -27,14 +27,13 @@ renderingFolder = fullfile(getpref('VirtualScenes', 'recipesFolder'), projectNam
 % edit some batch renderer options
 hints.renderer = 'Mitsuba';
 hints.workingFolder = getpref('VirtualScenes', 'workingFolder');
-hints.imageWidth = 640 / 4;
-hints.imageHeight = 480 / 4;
+hints.imageWidth = 640;
+hints.imageHeight = 480;
 
 %% Locate and render each packed-up recipe.
 
 archiveFiles = FindFiles(recipeFolder, '\.zip$');
 nScenes = numel(archiveFiles);
-nScenes = 1;
 for ii = 1:nScenes
     % get the recupe
     recipe = UnpackRecipe(archiveFiles{ii}, hints);
