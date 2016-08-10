@@ -27,11 +27,11 @@ setpref(prefName, 'modelRepository', repository);
 
 % where to save recipe archives
 setpref(prefName, 'recipesFolder', ...
-    fullfile(GetUserFolder(), 'virtual-scenes', 'recipe-archives'));
+    fullfile(GetUserFolder(), 'virtual_scenes', 'recipe_archives'));
 
 % where to put the RenderToolbox3 working folder
 setpref(prefName, 'workingFolder', ...
-    fullfile(GetUserFolder(), 'virtual-scenes', 'working'));
+    fullfile(GetUserFolder(), 'virtual_scenes', 'working'));
 
 % image processing defaults
 setpref(prefName, 'toneMapFactor', 100);
@@ -45,13 +45,33 @@ setpref(prefName, 'dklSensitivities', 'T_CIE_Y2');
 setpref(prefName, 'montageScaleFactor', 1);
 setpref(prefName, 'montageScaleMethod', 'lanczos3');
 
-% alternate RGB version of Mitsuba
-mitsuba = getpref('Mitsuba');
-setpref('MitsubaRGB', 'adjustments', mitsuba.adjustments);
-setpref('MitsubaRGB', 'radiometricScaleFactor', mitsuba.radiometricScaleFactor);
-setpref('MitsubaRGB', 'executable', mitsuba.executable);
-setpref('MitsubaRGB', 'importer', mitsuba.importer);
-setpref('MitsubaRGB', 'app', '/Applications/Mitsuba-RGB.app');
+%% Locate RGB build of Mitsuba.
+mitsuba.radiometricScaleFactor = 0.0795827427;
+
+% use Docker, if present
+mitsuba.dockerImage = 'ninjaben/mitsuba-rgb';
+
+% or use local installation
+if ismac()
+    mitsuba.app = '/Applications/Mitsuba-RGB.app';
+    mitsuba.executable = 'Contents/MacOS/mitsuba';
+    mitsuba.importer = 'Contents/MacOS/mtsimport';
+    mitsuba.libraryPathName = 'DYLD_LIBRARY_PATH';
+    mitsuba.libraryPath = '';
+else
+    mitsuba.app = '';
+    mitsuba.executable = 'mitusba';
+    mitsuba.importer = 'mtsimport';
+    mitsuba.libraryPathName = 'LD_LIBRARY_PATH';
+    mitsuba.libraryPath = '';
+end
+
+% version 2 compatibility -- deprecated
+mitsuba.adjustments = fullfile(rtbRoot(), ...
+    'BatchRenderer', 'Version2Strategy', 'Deprecated', ...
+    'RendererPlugins', 'Mitsuba', 'MitsubaDefaultAdjustments.xml');
+
+setpref('MitsubaRGB', fieldnames(mitsuba), struct2cell(mitsuba));
 
 %% Typical Mappings used to configure Mitsuba
 integratorId = 'integrator';
