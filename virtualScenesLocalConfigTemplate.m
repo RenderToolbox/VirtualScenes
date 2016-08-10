@@ -27,11 +27,11 @@ setpref(prefName, 'modelRepository', repository);
 
 % where to save recipe archives
 setpref(prefName, 'recipesFolder', ...
-    fullfile(GetUserFolder(), 'virtual_scenes', 'recipe_archives'));
+    fullfile(rtbGetUserFolder(), 'virtual_scenes', 'recipe_archives'));
 
 % where to put the RenderToolbox3 working folder
 setpref(prefName, 'workingFolder', ...
-    fullfile(GetUserFolder(), 'virtual_scenes', 'working'));
+    fullfile(rtbGetUserFolder(), 'virtual_scenes', 'working'));
 
 % image processing defaults
 setpref(prefName, 'toneMapFactor', 100);
