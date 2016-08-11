@@ -24,7 +24,7 @@ metadata = [];
 % locate the metadata file
 metadataFile = [modelName '.mat'];
 rootFolder = getpref('VirtualScenes', 'modelRepository');
-fileInfo = ResolveFilePath(metadataFile, rootFolder);
+fileInfo = rtbResolveFilePath(metadataFile, rootFolder);
 
 if ~fileInfo.isRootFolderMatch
     warning('VirtualScenes:NoSuchMetadata', ...

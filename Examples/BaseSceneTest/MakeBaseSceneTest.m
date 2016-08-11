@@ -16,6 +16,7 @@ baseSceneName = 'Mill';
 sceneMetadata = ReadMetadata(baseSceneName);
 
 % batch renderer options
+hints = GetDefaultHints();
 hints.renderer = 'Mitsuba';
 hints.recipeName = [baseSceneName 'Test'];
 hints.imageHeight = 480;
@@ -73,7 +74,7 @@ modelAbsPath = GetVirtualScenesRepositoryPath(sceneMetadata.relativePath);
 [modelPath, modelFile, modelExt] = fileparts(modelAbsPath);
 
 parentSceneFile = fullfile(resources, [modelFile, modelExt]);
-parentSceneFile = GetWorkingRelativePath(parentSceneFile, hints);
+parentSceneFile = rtbGetWorkingRelativePath(parentSceneFile, 'hints', hints);
 
 if exist(parentSceneFile, 'file')
     delete(parentSceneFile);
@@ -95,11 +96,15 @@ AppendMappings(mappingsFile, mappingsFile, ...
 
 %% Assemble a recipe.
 executive = { ...
-    @MakeRecipeSceneFiles, ...
-    @MakeRecipeRenderings, ...
-    @(recipe)MakeRecipeMontage(recipe, toneMapFactor, isScale)};
+    @rtbMakeRecipeSceneFiles, ...
+    @rtbMakeRecipeRenderings, ...
+    @(recipe)rtbMakeRecipeMontage(recipe, 'toneMapFactor', toneMapFactor, 'isScale', isScale)};
 
-recipe = NewRecipe([], executive, parentSceneFile, [], mappingsFile, hints);
+recipe = rtbNewRecipe( ...
+    'executive', executive, ...
+    'parentSceneFile', parentSceneFile, ...
+    'mappingsFile', mappingsFile, ...
+    'hints', hints);
 
 %% Render and view.
-recipe = ExecuteRecipe(recipe);
+recipe = rtbExecuteRecipe(recipe);
