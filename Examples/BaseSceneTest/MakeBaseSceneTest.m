@@ -19,8 +19,8 @@ sceneMetadata = ReadMetadata(baseSceneName);
 hints = GetDefaultHints();
 hints.renderer = 'Mitsuba';
 hints.recipeName = [baseSceneName 'Test'];
-hints.imageHeight = 480;
-hints.imageWidth = 640;
+hints.imageHeight = 120;
+hints.imageWidth = 160;
 hints.workingFolder = getpref('VirtualScenes', 'workingFolder');
 
 ChangeToWorkingFolder(hints);
