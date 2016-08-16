@@ -60,5 +60,5 @@ imageFileName = fullfile(imagesFolder, group, [name '.' imageFormat]);
 WriteImage(imageFileName, imageData);
 
 % put a reference in the recipe struct
-relativeFileName = GetWorkingRelativePath(imageFileName, recipe.input.hints);
+relativeFileName = rtbGetWorkingRelativePath(imageFileName, 'hints', recipe.input.hints);
 recipe = SetRecipeProcessingData(recipe, group, name, relativeFileName);

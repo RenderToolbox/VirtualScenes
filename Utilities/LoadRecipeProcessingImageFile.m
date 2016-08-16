@@ -50,7 +50,7 @@ end
 
 % where is the image located?
 relativeFileName = GetRecipeProcessingData(recipe, group, name);
-imageFileName = GetWorkingAbsolutePath(relativeFileName, recipe.input.hints);
+imageFileName = rtbWorkingAbsolutePath(relativeFileName, 'hints', recipe.input.hints);
 
 if ~exist(imageFileName, 'file')
     disp(['Image file not found: ', imageFileName]);
