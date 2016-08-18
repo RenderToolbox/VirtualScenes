@@ -50,6 +50,7 @@ mitsuba.radiometricScaleFactor = 0.0795827427;
 
 % use Docker, if present
 mitsuba.dockerImage = 'ninjaben/mitsuba-rgb';
+mitsuba.kubernetesPodSelector = 'app=mitsuba-rgb';
 
 % or use local installation
 if ismac()
