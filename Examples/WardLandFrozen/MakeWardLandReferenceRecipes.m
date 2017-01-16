@@ -31,7 +31,7 @@ rotMax = 359;
 
 %% Build the Plant and Barrel Recipe.
 hints.recipeName = 'PlantAndBarrel';
-ChangeToWorkingFolder(hints);
+rtbChangeToWorkingFolder('hints', hints);
 [matteMaterials, wardMaterials] = GetWardLandMaterials(hints);
 lightSpectra = GetWardLandIlluminantSpectra(6500, 0, [4000 12000], 20, hints);
 
@@ -50,7 +50,7 @@ PackUpRecipe(plantAndBarrel, archive, {'temp'});
 
 %% Build the Near and Far Warehouse Recipe.
 hints.recipeName = 'NearFarWarehouse';
-ChangeToWorkingFolder(hints);
+rtbChangeToWorkingFolder('hints', hints);
 [matteMaterials, wardMaterials] = GetWardLandMaterials(hints);
 lightSpectra = GetWardLandIlluminantSpectra(6500, 0, [4000 12000], 20, hints);
 
@@ -69,7 +69,7 @@ PackUpRecipe(nearFarWarehouse, archive, {'temp'});
 
 %% Build the Mondrian recipe.
 hints.recipeName = 'Mondrian';
-ChangeToWorkingFolder(hints);
+rtbChangeToWorkingFolder('hints', hints);
 [matteMaterials, wardMaterials] = GetWardLandMaterials(hints);
 lightSpectra = GetWardLandIlluminantSpectra(6500, 0, [4000 12000], 20, hints);
 
@@ -88,7 +88,7 @@ PackUpRecipe(mondrian, archive, {'temp'});
 
 %% Build the Blobbie recipe.
 hints.recipeName = 'Blobbies';
-ChangeToWorkingFolder(hints);
+rtbChangeToWorkingFolder('hints', hints);
 [matteMaterials, wardMaterials] = GetWardLandMaterials(hints);
 lightSpectra = GetWardLandIlluminantSpectra(6500, 0, [4000 12000], 20, hints);
 

@@ -31,7 +31,7 @@ hints.imageHeight = 480 / 4;
 
 
 %% Locate the packed-up recipe.
-archiveFiles = FindFiles(recipeFolder, '\.zip$');
+archiveFiles = rtbFindFiles('root', recipeFolder, 'filter', '\.zip$');
 nScenes = numel(archiveFiles);
 if nScenes < 1
     disp('Recipe  not found!');
@@ -87,7 +87,7 @@ illumReflectRaw = LoadRecipeProcessingImageFile(recipe, 'illumination', 'SRGBDif
 illumReflectInterp = LoadRecipeProcessingImageFile(recipe, 'illumination', 'SRGBDiffuseInterp');
 
 %% Show side by side.
-imageFolder = GetWorkingFolder('images', false, recipe.input.hints);
+imageFolder = rtbWorkingFolder('folder','images', 'hints', recipe.input.hints);
 montageName = fullfile(imageFolder, 'albedo-vs-reflect.png');
 images = { ...
     radiance, radiance; ...

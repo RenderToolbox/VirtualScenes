@@ -67,6 +67,6 @@ names = { ...
     };
 
 %% Write out a big montage.
-imageFolder = GetWorkingFolder('images', true, recipe.input.hints);
+imageFolder = rtbWorkingFolder('folder','images', 'rendererSpecific', true, 'hints', recipe.input.hints);
 recipe.processing.montage = MakeImageMontage( ...
     fullfile(imageFolder, 'montage.png'), images, names, scaleFactor, scaleMethod);

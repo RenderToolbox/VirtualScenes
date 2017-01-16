@@ -80,7 +80,7 @@ recipe.input.hints.imageWidth = hints.imageWidth;
 recipe.input.hints.imageHeight = hints.imageHeight;
 
 % copy in the new mappings file and wire it up
-working = GetWorkingFolder('', false, recipe.input.hints);
+working = rtbWorkingFolder('folder','', 'hints', recipe.input.hints);
 copyfile(matchRMSEMappings, working);
 
 [mappingsPath, mappingsBase, mappingsExt] = fileparts(matchRMSEMappings);
@@ -132,5 +132,5 @@ hookValues = { ...
 newNames = cat(2, varNames, hookNames);
 newValues = cat(2, wardValues, hookValues);
 newConditionsFile = fullfile(working, 'MatchRMSEConditions.txt');
-WriteConditionsFile(newConditionsFile, newNames, newValues);
+rtbWriteConditionsFile(newConditionsFile, newNames, newValues);
 recipe.input.conditionsFile = newConditionsFile;

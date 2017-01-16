@@ -32,7 +32,7 @@ recipe = ExecuteRecipe(recipe, 1);
 % choose a scene file for factoids
 sceneFile = recipe.rendering.scenes{1}.mitsubaFile;
 
-ChangeToWorkingFolder(recipe.input.hints);
+rtbChangeToWorkingFolder('hints', recipe.input.hints);
 [status, result, newScene, exrOutput, factoidOutput] = ...
     RenderMitsubaFactoids( ...
     sceneFile, [], [], [], [], [], recipe.input.hints);

@@ -52,7 +52,7 @@ albedo = factoidOutput.albedo.data(:,:,order);
 
 
 %% Make sRGB representations.
-albedoSRGB = uint8(MultispectralToSRGB(albedo, S, toneMapFactor, isScale));
+albedoSRGB = uint8(rtbMultispectralToSRGB(albedo, S, 'toneMapFactor', toneMapFactor, 'isScale', isScale));
 
 %% Save images.
 group = 'albedo';

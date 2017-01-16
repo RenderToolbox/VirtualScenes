@@ -23,7 +23,7 @@
 function recipe = BuildSweepConditions(recipe, sweepName, paramName, paramValues, imageNames)
 
 % get the original parameter names and values
-working = GetWorkingFolder('', false, recipe.input.hints);
+working = rtbWorkingFolder('folder','', 'hints', recipe.input.hints);
 conditionsFile = ResolveFilePath(recipe.input.conditionsFile, working);
 [varNames, varValues] = ParseConditions(conditionsFile.absolutePath);
 
@@ -40,5 +40,5 @@ newValues(:,isImageName) = imageNames;
 
 % write the new conditions file and wire it up
 newConditionsFile = fullfile(working, [sweepName '-Conditions.txt']);
-WriteConditionsFile(newConditionsFile, varNames, newValues);
+rtbWriteConditionsFile(newConditionsFile, varNames, newValues);
 recipe.input.conditionsFile = newConditionsFile;

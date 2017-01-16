@@ -37,7 +37,7 @@ end
 if nargin < 2 || isempty(hints)
     resources = [];
 else
-    resources = GetWorkingFolder('resources', false, hints);
+    resources = rtbWorkingFolder('folder','resources', 'hints', hints);
 end
 
 % use color checker diffuse spectra

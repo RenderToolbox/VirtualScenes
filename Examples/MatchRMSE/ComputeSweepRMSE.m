@@ -27,7 +27,7 @@
 function rmses = ComputeSweepRMSE(recipe, imageNames, pixelMask)
 
 % locate the baseline rendering
-renderings = GetWorkingFolder('renderings', true, recipe.input.hints);
+renderings = rtbWorkingFolder('folder','renderings', 'rendererSpecific',true,'hints', recipe.input.hints);
 firstOutput = fullfile(renderings, [imageNames{1} '.mat']);
 firstData = load(firstOutput);
 

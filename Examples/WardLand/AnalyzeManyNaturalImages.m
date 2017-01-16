@@ -13,7 +13,7 @@ naturalImages = '/Users/ben/Documents/Projects/UPennNaturalImages/tofu.psych.upe
 
 % use aux info files to identify sets of related images
 matchPattern = '_AUX\.mat$';
-allImageFiles = FindFiles(naturalImages, matchPattern);
+allImageFiles = rtbFindFiles('root', naturalImages, 'filter', matchPattern);
 nImages = numel(allImageFiles);
 
 % pick some repeatably-randomly

@@ -27,8 +27,8 @@ end
 
 % locate the data files
 textureFolder = fullfile(VirtualScenesRoot(), 'MiscellaneousData', 'Textures');
-exrs = FindFiles(textureFolder, '\.exr$');
-jpgs = FindFiles(textureFolder, '\.jpg$');
+exrs = rtbFindFiles('root', textureFolder, 'filter', '\.exr$');
+jpgs = rtbFindFiles('root', textureFolder, 'filter', '\.jpg$');
 fullPaths = cat(2, exrs, jpgs);
 
 % get file names withouth paths

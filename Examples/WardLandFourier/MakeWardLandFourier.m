@@ -46,7 +46,7 @@ for tt = 1:nTodo
     % choose which condition to analyze
     conditionName = todo(tt).conditionName;
     blurred = todo(tt).blurred;
-    renderings = FindFiles(hints.workingFolder, [conditionName '\.mat$']);
+    renderings = rtbFindFiles('root', hints.workingFolder, 'filter', [conditionName '\.mat$']);
     nRecipes = numel(renderings);
     
     % give a name for this todo item
@@ -71,8 +71,8 @@ for tt = 1:nTodo
         data = load(renderings{ii});
         
         % get sRGB and XYZ
-        [sRGB, XYZ] = MultispectralToSRGB( ...
-            data.multispectralImage, data.S, toneMapFactor, isScale);
+        [sRGB, XYZ] = rtbMultispectralToSRGB( ...
+            data.multispectralImage, data.S, 'toneMapFactor', toneMapFactor, 'isScale', isScale);
         luminance = XYZ(:,:,2);
         
         % blur the image as a test of intuition

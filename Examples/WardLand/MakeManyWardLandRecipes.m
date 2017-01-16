@@ -98,7 +98,7 @@ for ss = nSceneConditions
             
             recipeName = sprintf('%s-%02d-Obj-%02d-Illum', baseScene, nObjects, nLights);
             hints.recipeName = recipeName;
-            ChangeToWorkingFolder(hints);
+            rtbChangeToWorkingFolder('hints', hints);
             
             % copy resources into this recipe working folder
             [textureIds, textures, matteTextured, wardTextured, filePaths] = ...

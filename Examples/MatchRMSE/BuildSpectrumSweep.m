@@ -50,5 +50,5 @@ for ii = 1:nSteps
     imageNames{ii} = sprintf('%s-%02d', sweepName, ii);
     spdFiles{ii} = sprintf('%s.spd', imageNames{ii});
     intermMags = lambdas(ii) .* magsB + (1-lambdas(ii)) .* magsA;
-    WriteSpectrumFile(wlsA, intermMags, fullfile(outputFolder, spdFiles{ii}));
+    rtbWriteSpectrumFile(wlsA, intermMags, fullfile(outputFolder, spdFiles{ii}));
 end

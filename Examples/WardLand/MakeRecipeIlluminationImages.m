@@ -87,11 +87,11 @@ illumMeanInterp = SmoothOutGaps(illumMeanRaw, objectCoverage, filterWidth);
 
 
 %% Make sRGB representations.
-illumRawSRGB = uint8(MultispectralToSRGB(illumRaw, S, toneMapFactor, isScale));
-illumInterpSRGB = uint8(MultispectralToSRGB(illumInterp, S, toneMapFactor, isScale));
+illumRawSRGB = uint8(rtbMultispectralToSRGB(illumRaw, S, 'toneMapFactor', toneMapFactor, 'isScale', isScale));
+illumInterpSRGB = uint8(rtbMultispectralToSRGB(illumInterp, S, 'toneMapFactor', toneMapFactor, 'isScale', isScale));
 
-illumMeanRawSRGB = uint8(MultispectralToSRGB(illumMeanRaw, S, toneMapFactor, isScale));
-illumMeanInterpSRGB = uint8(MultispectralToSRGB(illumMeanInterp, S, toneMapFactor, isScale));
+illumMeanRawSRGB = uint8(rtbMultispectralToSRGB(illumMeanRaw, S, 'toneMapFactor', toneMapFactor, 'isScale', isScale));
+illumMeanInterpSRGB = uint8(rtbMultispectralToSRGB(illumMeanInterp, S, 'toneMapFactor', toneMapFactor, 'isScale', isScale));
 
 
 %% Save images.

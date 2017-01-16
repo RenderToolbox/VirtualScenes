@@ -69,7 +69,7 @@ lightSet = { ...
 %% Build a recupe from the sets above.
 
 hints.recipeName = projectName;
-ChangeToWorkingFolder(hints);
+rtbChangeToWorkingFolder('hints', hints);
 
 % make sure Ward Land resources are available to this recipe
 [matteMaterials, wardMaterials] = GetWardLandMaterials(hints);

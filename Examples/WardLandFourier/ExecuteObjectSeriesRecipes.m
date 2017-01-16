@@ -30,7 +30,7 @@ hints.imageWidth = 640/4;
 hints.imageHeight = 480/4;
 
 %% Locate and render each packed-up recipe.
-archiveFiles = FindFiles(recipeFolder, '\.zip$');
+archiveFiles = rtbFindFiles('root', recipeFolder, 'filter', '\.zip$');
 nRecipes = numel(archiveFiles);
 recipes = cell(1, nRecipes);
 for ii = 1:nRecipes

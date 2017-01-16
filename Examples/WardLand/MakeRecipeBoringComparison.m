@@ -54,8 +54,8 @@ boringMinusIllum = boringScaled - illumScaled;
 illumMinusBoring = illumScaled - boringScaled;
 
 %% Make sRGB representations.
-boringMinusIllumSRGB = uint8(MultispectralToSRGB(boringMinusIllum, S, toneMapFactor, isScale));
-illumMinusBoringSRGB = uint8(MultispectralToSRGB(illumMinusBoring, S, toneMapFactor, isScale));
+boringMinusIllumSRGB = uint8(rtbMultispectralToSRGB(boringMinusIllum, S, 'toneMapFactor', toneMapFactor, 'isScale', isScale));
+illumMinusBoringSRGB = uint8(rtbMultispectralToSRGB(illumMinusBoring, S, 'toneMapFactor', toneMapFactor, 'isScale', isScale););
 
 %% Write out analysis images to disk.
 group = 'boring';

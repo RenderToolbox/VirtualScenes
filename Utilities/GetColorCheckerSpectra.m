@@ -31,7 +31,7 @@ end
 % locate the data files
 spectrumFolder = fullfile( ...
     RenderToolboxRoot(), 'RenderData', 'Macbeth-ColorChecker');
-fullPaths = FindFiles(spectrumFolder, 'mccBabel-\d+.spd');
+fullPaths = rtbFindFiles('root', spectrumFolder, 'filter','mccBabel-\d+.spd');
 nSquares = numel(fullPaths);
 fileNames = cell(1, nSquares);
 squareNumber = zeros(1, nSquares);

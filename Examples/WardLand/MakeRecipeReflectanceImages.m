@@ -80,10 +80,10 @@ diffuseInterp = SmoothOutGaps(diffuseRaw, materialIndexMask, filterWidth);
 specularInterp = SmoothOutGaps(specularRaw, materialIndexMask, filterWidth);
 
 %% Make sRGB representations.
-diffuseRawSRGB = uint8(MultispectralToSRGB(diffuseRaw, S, toneMapFactor, isScale));
-diffuseInterpSRGB = uint8(MultispectralToSRGB(diffuseInterp, S, toneMapFactor, isScale));
-specularRawSRGB = uint8(MultispectralToSRGB(specularRaw, S, toneMapFactor, isScale));
-specularInterpSRGB = uint8(MultispectralToSRGB(specularInterp, S, toneMapFactor, isScale));
+diffuseRawSRGB = uint8(rtbMultispectralToSRGB(diffuseRaw, S, 'toneMapFactor', toneMapFactor, 'isScale', isScale));
+diffuseInterpSRGB = uint8(rtbMultispectralToSRGB(diffuseInterp, S, 'toneMapFactor', toneMapFactor, 'isScale', isScale));
+specularRawSRGB = uint8(rtbMultispectralToSRGB(specularRaw, S, 'toneMapFactor', toneMapFactor, 'isScale', isScale));
+specularInterpSRGB = uint8(rtbMultispectralToSRGB(specularInterp, S, 'toneMapFactor', toneMapFactor, 'isScale', isScale));
 
 %% Save images.
 group = 'reflectance';

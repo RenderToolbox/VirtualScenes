@@ -27,10 +27,10 @@ if nargin < 4 || isempty(structName)
     structName = [hints.recipeName ' ' folderName ' ' imageName];
 end
 
-images = GetWorkingFolder('images', true, hints);
+images = rtbWorkingFolder('folder','images', 'rendererSpecific', true, 'hints', hints);
 
 fourierStruct.name = structName;
-imageFile = FindFiles(fullfile(images, folderName), imageName, false, true);
+imageFile = rtbFindFiles('root', fullfile(images, folderName), 'filter', imageName, 'exactMatch', true);
 fourierStruct.rgb = imread(imageFile{1});
 
 % convert images rgb to grayscale luminance

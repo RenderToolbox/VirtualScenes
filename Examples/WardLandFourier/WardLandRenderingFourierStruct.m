@@ -40,12 +40,12 @@ if nargin < 5 || isempty(isScale)
     isScale = true;
 end
 
-renderings = GetWorkingFolder('renderings', true, hints);
+renderings = rtbWorkingFolder('folder','renderings', 'rendererSpecific', true, 'hints', hints);
 
 fourierStruct.name = structName;
-rendering = FindFiles(renderings, [conditionName '\.mat$']);
+rendering = rtbFindFiles('root', renderings, 'filter', [conditionName '\.mat$']);
 data = load(rendering{1});
-[fourierStruct.rgb, xyz] = MultispectralToSRGB( ...
-    data.multispectralImage, data.S, toneMapFactor, isScale);
+[fourierStruct.rgb, xyz] = rtbMultispectralToSRGB( ...
+    data.multispectralImage, data.S, 'toneMapFactor', toneMapFactor, 'isScale', isScale);
 fourierStruct.grayscale = xyz(:,:,2);
 fourierStruct.results = [];

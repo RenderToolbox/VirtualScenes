@@ -96,7 +96,7 @@ for cc = 1:nCountSeries
         % start a new recipe
         hints.recipeName = sprintf('%s-%do-%ds', ...
             baseScene, cc, ss);
-        ChangeToWorkingFolder(hints);
+        rtbChangeToWorkingFolder('hints', hints);
         
         % copy resources into this recipe's folder
         [matteMaterials, wardMaterials] = GetWardLandMaterials(hints);

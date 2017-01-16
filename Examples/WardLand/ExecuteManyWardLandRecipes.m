@@ -32,7 +32,7 @@ hints.imageHeight = 480;
 
 %% Locate and render each packed-up recipe.
 
-archiveFiles = FindFiles(recipeFolder, '\.zip$');
+archiveFiles = rtbFindFiles('root', recipeFolder, 'filter', '\.zip$');
 nScenes = numel(archiveFiles);
 for ii = 1:nScenes
     % get the recupe

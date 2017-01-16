@@ -57,6 +57,6 @@ for ii = 1:nFactoids
 end
 
 %% Write out a big montage.
-imageFolder = GetWorkingFolder('images', true, recipe.input.hints);
+imageFolder = rtbWorkingFolder('folder','images', 'rendererSpecific', true, 'hints', recipe.input.hints);
 recipe.processing.montage = MakeImageMontage( ...
     fullfile(imageFolder, 'factoids.png'), images, names, scaleFactor, scaleMethod);

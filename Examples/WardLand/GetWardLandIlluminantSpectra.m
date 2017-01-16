@@ -45,7 +45,7 @@ end
 if nargin < 5 || isempty (hints)
     resources = '';
 else
-    resources = GetWorkingFolder('resources', false, hints);
+    resources = rtbWorkingFolder('folder','resources', 'hints', hints);
 end
 
 % choose random illuminant temperatures
@@ -76,7 +76,7 @@ for ii = 1:nSpectra
     
     spdFiles{ii} = fullfile(resources, spdName);
     if ~isempty(resources)
-        WriteSpectrumFile(wls, spd, spdFiles{ii});
+        rtbWriteSpectrumFile(wls, spd, spdFiles{ii});
     end
 end
 

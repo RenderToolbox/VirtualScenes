@@ -23,7 +23,7 @@ hints.imageHeight = 480 / 2;
 
 
 %% Locate the packed-up recipe.
-archiveFiles = FindFiles(recipeFolder, '\.zip$');
+archiveFiles = rtbFindFiles('root', recipeFolder, 'filter', '\.zip$');
 nScenes = numel(archiveFiles);
 if nScenes < 1
     disp('Recipe  not found!');
@@ -115,7 +115,7 @@ recipe = SaveRecipeProcessingImageFile(recipe, group, 'objectIndexes', 'mat', ..
     GetRecipeProcessingData(recipe, 'mask', 'objectIndexes'));
 
 %% Build a montage to compare paths.
-imageFolder = GetWorkingFolder('images', false, recipe.input.hints);
+imageFolder = rtbWorkingFolder('folder','images', 'hints', recipe.input.hints);
 montageName = fullfile(imageFolder, 'factoid-vs-material.png');
 
 colorMap = [0,0,0; 255*lines()];

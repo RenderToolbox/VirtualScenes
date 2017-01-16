@@ -36,10 +36,10 @@ originalRecipe = ExecuteRecipe(originalRecipe, 1:3);
 %% Prepare a "matchRmse" recipe based on the original recipe.
 matchRmseRecipe = BuildMatchRMSERecipe(wardLandArchive, matchRMSEMappings, hints);
 
-working = GetWorkingFolder('', false, matchRmseRecipe.input.hints);
-resources = GetWorkingFolder('resources', false, matchRmseRecipe.input.hints);
-images = GetWorkingFolder('images', true, matchRmseRecipe.input.hints);
-renderings = GetWorkingFolder('renderings', true, matchRmseRecipe.input.hints);
+working = rtbWorkingFolder('folder','', 'hints', matchRmseRecipe.input.hints);
+resources = rtbWorkingFolder('folder','resources', 'hints', matchRmseRecipe.input.hints);
+images = rtbWorkingFolder('folder','images', 'rendererSpecific', true, 'hints', matchRmseRecipe.input.hints);
+renderings = rtbWorkingFolder('folder', 'renderings',  'rendererSpecific', true, 'hints', matchRmseRecipe.input.hints);
 
 %% Run a parameter sweep for object reflectance.
 refSweepName = 'reflectance';

@@ -91,7 +91,7 @@ if ~isempty(fetchCommand)
 end
 
 %% Execute from inputFolder and save to outputFolder.
-archiveFiles = FindFiles(inputFolder, '\.zip$');
+archiveFiles = rtbFindFiles('root', inputFolder, 'filter', '\.zip$');
 nRecipes = numel(archiveFiles);
 disp(sprintf('Found %d recipes in input folder %s', nRecipes, inputFolder))
 for ii = 1:nRecipes

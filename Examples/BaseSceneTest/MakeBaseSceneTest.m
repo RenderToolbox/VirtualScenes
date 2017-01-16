@@ -23,8 +23,8 @@ hints.imageHeight = 120;
 hints.imageWidth = 160;
 hints.workingFolder = getpref('VirtualScenes', 'workingFolder');
 
-ChangeToWorkingFolder(hints);
-resources = GetWorkingFolder('resources', false, hints);
+rtbChangeToWorkingFolder('hints', hints);
+resources = rtbWorkingFolder('folder','resources', 'hints', hints);
 
 toneMapFactor = getpref('VirtualScenes', 'toneMapFactor');
 isScale = getpref('VirtualScenes', 'toneMapScale');

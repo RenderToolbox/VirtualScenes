@@ -35,14 +35,14 @@ lmsSensitivities = 'T_cones_ss2';
 set(0, 'DefaultAxesFontSize', 14)
 
 %% Analyze each packed up recipe.
-archiveFiles = FindFiles(recipeFolder, '\.zip$');
+archiveFiles = rtbFindFiles('root', recipeFolder, 'filter', '\.zip$');
 nRecipes = numel(archiveFiles);
 
 reductions = cell(1, nRecipes);
 for ii = 1:nRecipes
     % get the recipe
     recipe = UnpackRecipe(archiveFiles{ii}, hints);
-    ChangeToWorkingFolder(recipe.input.hints);
+    rtbChangeToWorkingFolder('hints', recipe.input.hints);
     
     % run basic recipe analysis functions
     recipe = MakeRecipeRGBImages(recipe, toneMapFactor, isScale);

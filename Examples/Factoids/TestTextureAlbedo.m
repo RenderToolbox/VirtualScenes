@@ -16,7 +16,7 @@ hints.imageHeight = 240;
 hints.renderer = 'Mitsuba';
 
 hints.recipeName = mfilename();
-ChangeToWorkingFolder(hints);
+rtbChangeToWorkingFolder('hints', hints);
 
 %% Render with Mitsuba.
 nativeSceneFiles = MakeSceneFiles( ...
@@ -44,14 +44,14 @@ spectralIllumination(~isfinite(spectralIllumination)) = 0;
 toneMapFactor = 10;
 isScale = true;
 
-rgbIllumination = MultispectralToSRGB( ...
-    spectralIllumination, S, toneMapFactor, isScale);
+rgbIllumination = rtbMultispectralToSRGB( ...
+    spectralIllumination, S, 'toneMapFactor', toneMapFactor, 'isScale', isScale);
 
-rgbRadiance = MultispectralToSRGB( ...
-    spectralRadiance, radianceData.S, toneMapFactor, isScale);
+rgbRadiance = rtbMultispectralToSRGB( ...
+    spectralRadiance, radianceData.S, 'toneMapFactor', toneMapFactor, 'isScale', isScale);
 
-rgbAlbedo = MultispectralToSRGB( ...
-    spectralAlbedo, S, toneMapFactor, isScale);
+rgbAlbedo = rtbMultispectralToSRGB( ...
+    spectralAlbedo, S, 'toneMapFactor', toneMapFactor, 'isScale', isScale);
 
 %% Take a look.
 subplot(2,2,1)

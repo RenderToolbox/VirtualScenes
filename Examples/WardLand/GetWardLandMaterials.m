@@ -29,7 +29,7 @@ function [matteMaterials, wardMaterials, filePaths] = GetWardLandMaterials(hints
 if nargin < 1 || isempty(hints)
     resources = [];
 else
-    resources = GetWorkingFolder('resources', false, hints);
+    resources = rtbWorkingFolder('folder','resources', 'hints', hints);
 end
 
 % use color checker diffuse spectra
